@@ -12,6 +12,7 @@ int user_count = 0;
 
 void register_user();
 int login_user();
+int user_index;
 
 int main()
 {
@@ -29,10 +30,18 @@ int main()
         switch (option)
         {
         case 1:
-            printf("\nYou selected Register.\n");
+            register_user();
             break;
         case 2:
-            printf("\nYou selected Login.\n");
+            user_index = login_user();
+            if (user_index >= 0)
+            {
+                printf("Login Successfull!, Welcome, %s!", users[user_index].username);
+            }
+            else
+            {
+                printf("\nLogin Failed! Incorrect Username or Password.\n");
+            }
             break;
         case 3:
             printf("\nExiting Program\n");
@@ -42,4 +51,14 @@ int main()
             break;
         }
     }
+}
+
+void register_user()
+{
+    printf("\nDummy Registration\n");
+}
+
+int login_user()
+{
+    return -1;
 }
