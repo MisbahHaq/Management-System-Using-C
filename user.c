@@ -1,10 +1,12 @@
 #include <stdio.h>
+#include <string.h>
 
 #define MAX_USERS 10
+#define CREDENTIAL_LENGTH 30
 typedef struct
 {
-    char username[30];
-    char password[30];
+    char username[CREDENTIAL_LENGTH];
+    char password[CREDENTIAL_LENGTH];
 } User;
 
 User users[MAX_USERS];
@@ -12,6 +14,8 @@ int user_count = 0;
 
 void register_user();
 int login_user();
+void fix_fgets_input(char *);
+void input_password(char *);
 
 int main()
 {
@@ -60,11 +64,45 @@ void register_user()
         printf("\nMaximum %d users are supported! No more registrations Allowed!!!\n", MAX_USERS);
         return;
     }
+
+    int new_index = user_count;
     printf("\nRegister a new user\n");
-    printf("\nEnter a username: ");
+    printf("\nEnter a Username: ");
+    fgets(users[new_index].username, CREDENTIAL_LENGTH, stdin);
+    fix_fgets_input(users[new_index].username);
+    input_password(users[new_index].password);
+    user_count++;
+    printf("\nRegistration Successful!\n");
 }
 
 int login_user()
 {
+    char username[CREDENTIAL_LENGTH];
+    char password[CREDENTIAL_LENGTH];
+    printf("\nEnter a Username: ");
+    fgets(username, CREDENTIAL_LENGTH, stdin);
+    fix_fgets_input(username);
+    input_password(password);
+
+    for (int i = 0; i < user_count; i++)
+    {
+        if (strcmp(username, users[i].username) == 0 &&
+            strcmp(password, users[i].password))
+        {
+            return i;
+        }
+    }
     return -1;
+}
+
+void input_password(char *password)
+{
+    printf("\nEnter password : ");
+    fgets(password, CREDENTIAL_LENGTH, stdin);
+    fix_fgets_input(password);
+}
+void fix_fgets_input(char *string)
+{
+    int index = strcspn(string, "\n");
+    string[index] = '\0';
 }
