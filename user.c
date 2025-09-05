@@ -40,7 +40,7 @@ int main()
             user_index = login_user();
             if (user_index >= 0)
             {
-                printf("Login Successfull!, Welcome, %s!", users[user_index].username);
+                printf("\nLogin Successfull!, Welcome, %s!\n", users[user_index].username);
             }
             else
             {
@@ -87,7 +87,7 @@ int login_user()
     for (int i = 0; i < user_count; i++)
     {
         if (strcmp(username, users[i].username) == 0 &&
-            strcmp(password, users[i].password))
+            strcmp(password, users[i].password) == 0)
         {
             return i;
         }
@@ -97,7 +97,7 @@ int login_user()
 
 void input_password(char *password)
 {
-    printf("Enter password : ");
+    printf("Enter password: ");
     fgets(password, CREDENTIAL_LENGTH, stdin);
     fix_fgets_input(password);
 }
