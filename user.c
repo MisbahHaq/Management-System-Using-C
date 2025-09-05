@@ -1,5 +1,18 @@
 #include <stdio.h>
 
+#define MAX_USERS 10
+typedef struct
+{
+    char username[30];
+    char password[30];
+} User;
+
+User users[MAX_USERS];
+int user_count = 0;
+
+void register_user();
+int login_user();
+
 int main()
 {
     int option;
@@ -11,17 +24,15 @@ int main()
         printf("\n3. Exit");
         printf("\nSelect an option: ");
 
-        scanf("%d", &option); // <-- Missing in your original code
+        scanf("%d", &option);
 
         switch (option)
         {
         case 1:
             printf("\nYou selected Register.\n");
-            // Registration logic goes here
             break;
         case 2:
             printf("\nYou selected Login.\n");
-            // Login logic goes here
             break;
         case 3:
             printf("\nExiting Program\n");
