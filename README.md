@@ -1,2 +1,0 @@
-# monopo.co.jp
-
