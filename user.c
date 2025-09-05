@@ -28,8 +28,8 @@ int main()
         printf("\n2. Login");
         printf("\n3. Exit");
         printf("\nSelect an option: ");
-
         scanf("%d", &option);
+        getchar();
 
         switch (option)
         {
@@ -97,7 +97,7 @@ int login_user()
 
 void input_password(char *password)
 {
-    printf("\nEnter password : ");
+    printf("Enter password : ");
     fgets(password, CREDENTIAL_LENGTH, stdin);
     fix_fgets_input(password);
 }
