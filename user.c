@@ -12,11 +12,11 @@ int user_count = 0;
 
 void register_user();
 int login_user();
-int user_index;
 
 int main()
 {
     int option;
+    int user_index;
     while (1)
     {
         printf("\nWelcome to User Management");
@@ -55,7 +55,13 @@ int main()
 
 void register_user()
 {
-    printf("\nDummy Registration\n");
+    if (user_count == MAX_USERS)
+    {
+        printf("\nMaximum %d users are supported! No more registrations Allowed!!!\n", MAX_USERS);
+        return;
+    }
+    printf("\nRegister a new user\n");
+    printf("\nEnter a username: ");
 }
 
 int login_user()
